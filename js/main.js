@@ -18,29 +18,49 @@ let base_url1 = `http://api.themoviedb.org/3${recurso1}`;
 const call = async(url) => {
     let res = await axios.get(url);
 
-    if (!res.data.results) {
-        error = new Error("La url era incorrecta");
-        return error;
-    }
+    if (res.data.results) {
+        return res.data.results;
+    };
 
-    return res.data.results;
+    if (res.data.title) {
+        return res.data
+    };
+
+    //if (!res.data.results) {
+    //    error = new Error("La url era incorrecta");
+    //    return error;
+    //}
+    //
+    //return res.data.results;
 }
 
 const pintar = async(coleccionPintar) => {
     //Proceso para el pintado HTML de las películas
     const divPelisDomElement = document.getElementById("contenedor");
 
-    coleccionPintar.map((pelicula) => {
 
+    if (Array.isArray(coleccionPintar)) {
+        coleccionPintar.map((pelicula) => {
+
+            const newPeliDomElement = document.createElement("div");
+            newPeliDomElement.innerHTML = pelicula.title;
+            divPelisDomElement.appendChild(newPeliDomElement);
+
+            const newImaDomElement = document.createElement("img");
+            newImaDomElement.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + pelicula.poster_path);
+            divPelisDomElement.appendChild(newImaDomElement);
+        });
+    }
+
+    if (coleccionPintar.original_title) {
         const newPeliDomElement = document.createElement("div");
-        newPeliDomElement.innerHTML = pelicula.title;
+        newPeliDomElement.innerHTML = coleccionPintar.title;
         divPelisDomElement.appendChild(newPeliDomElement);
 
         const newImaDomElement = document.createElement("img");
-        newImaDomElement.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + pelicula.poster_path);
+        newImaDomElement.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + coleccionPintar.poster_path);
         divPelisDomElement.appendChild(newImaDomElement);
-    });
-
+    }
     return;
 }
 
