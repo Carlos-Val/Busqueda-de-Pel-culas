@@ -12,8 +12,8 @@ let recurso1 = "";
 
 let criterio = "movie";
 
-let base_url = `http://api.themoviedb.org/3/${recurso}`;
-let base_url1 = `http://api.themoviedb.org/3${recurso1}`;
+let base_url = `https://api.themoviedb.org/3/${recurso}`;
+let base_url1 = `https://api.themoviedb.org/3${recurso1}`;
 
 const call = async(url) => {
     let res = await axios.get(url);
