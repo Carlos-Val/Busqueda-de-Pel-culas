@@ -25,44 +25,31 @@ const call = async(url) => {
     if (res.data.title) {
         return res.data
     };
-
-    //if (!res.data.results) {
-    //    error = new Error("La url era incorrecta");
-    //    return error;
-    //}
-    //
-    //return res.data.results;
 }
 
 const pintar = async(coleccionPintar) => {
     //Proceso para el pintado HTML de las películas
     const divPelisDomElement = document.getElementById("contenedor");
 
+    divPelisDomElement.innerHTML = "";
 
     if (Array.isArray(coleccionPintar)) {
         coleccionPintar.map((pelicula) => {
-
-            const newPeliDomElement = document.createElement("div");
-            newPeliDomElement.innerHTML = pelicula.title;
-            divPelisDomElement.appendChild(newPeliDomElement);
-
-            const newImaDomElement = document.createElement("img");
-            newImaDomElement.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + pelicula.poster_path);
-            divPelisDomElement.appendChild(newImaDomElement);
+            divPelisDomElement.innerHTML += `<div id='peliculas'>
+            <img src='https://image.tmdb.org/t/p/w500${pelicula.poster_path}'></img></div>
+            <div id='textos'><h2>${pelicula.title}</h2>
+            <h3>NOTA: ${pelicula.vote_average}</h3>
+            </div>`
         });
     }
-
     if (coleccionPintar.original_title) {
-        const newPeliDomElement = document.createElement("div");
-        newPeliDomElement.innerHTML = coleccionPintar.title;
-        divPelisDomElement.appendChild(newPeliDomElement);
-
-        const newImaDomElement = document.createElement("img");
-        newImaDomElement.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + coleccionPintar.poster_path);
-        divPelisDomElement.appendChild(newImaDomElement);
+        divPelisDomElement.innerHTML += `<div class='peliculas'>
+        <img src='https://image.tmdb.org/t/p/w500${coleccionPintar.poster_path}' width='200px' class='picture'>
+        </img></div><div class='infoPelis'><h2>${coleccionPintar.original_title}</h2><h3>NOTA: ${coleccionPintar.vote_average}</h3></div>`
     }
     return;
 }
+
 
 
 
@@ -85,7 +72,7 @@ const buscador1 = async() => {
     let query = valor1.value;
 
     //Construccion de la URL 
-    let url = `${base_url1}/${criterio}/${query}?api_key=${key}&language=en-US`;
+    let url = `${base_url1}/${criterio}/${query}?api_key=${key}&language=es-ES`;
 
     let pelis = await call(url);
 

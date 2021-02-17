@@ -5,24 +5,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Buscador de Películas</title>
 
+
+    <link href="https://fonts.googleapis.com/css2?family=Ranchers&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body>
+    <div class="header">
 
-    <input id="buscador" type="text" placeholder="titulo">
-    <button onclick="buscador()">Busca por titulo</button>
+        <div class="botones1"></div>
+        <div class="botones2">
+            <input id="buscador" type="text" placeholder="titulo">
+            <button onclick="buscador()">Busca por titulo</button>
+            <input id="buscador1" type="text" placeholder="ID">
+            <button onclick="buscador1()">Busca por id</button>
+        </div>
+    </div>
 
-    <input id="buscador1" type="text" placeholder="titulo">
-    <button onclick="buscador1()">Busca por id</button>
 
-    <div id="contenedor"></div>
-    <div id="contenedor1"></div>
+    <div class="general">
+        <div id="contenedor"></div>
+    </div>
+
+
+
+
+
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <script src="js/main.js"></script>
+
+
+
+
+
 </body>
 
 </html>
